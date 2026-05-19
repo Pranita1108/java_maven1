@@ -1,0 +1,55 @@
+pipeline {
+    agent any
+
+    tools {
+        // Use the Maven installation configured in Jenkins (Manage Jenkins → Global Tool Configuration)
+        maven 'Maven_3.8.6'
+        jdk 'JDK11'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Pull code from GitHub/GitLab/Bitbucket
+                git branch: 'main',
+                    url: 'https://github.com/your-org/your-repo.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                // Run Maven clean and compile
+                sh 'mvn clean compile'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                // Run unit tests
+                sh 'mvn test'
+            }
+        }
+
+        stage('Package') {
+            steps {
+                // Package the application (e.g., JAR/WAR)
+                sh 'mvn package'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                // Example: deploy to Tomcat or copy artifact
+                sh 'echo "Deploy step goes here"'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Build completed successfully!'
+        }
+        failure {
+            echo 'Build failed. Check logs.'
+        }
+    }
