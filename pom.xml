@@ -2,12 +2,15 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
                              http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example</groupId>
-    <artifactId>java-maven-webapp</artifactId>
+    <artifactId>maven-webapp</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
+
+    <name>Maven Web Application</name>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -23,11 +26,28 @@
             <version>4.0.1</version>
             <scope>provided</scope>
         </dependency>
+
+        <!-- JSP API (optional, if using JSPs) -->
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>javax.servlet.jsp-api</artifactId>
+            <version>2.3.3</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- JUnit for testing -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
+        <finalName>maven-webapp</finalName>
         <plugins>
-            <!-- Maven Compiler Plugin -->
+            <!-- Compiler plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -38,7 +58,7 @@
                 </configuration>
             </plugin>
 
-            <!-- Maven WAR Plugin -->
+            <!-- WAR plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
@@ -47,18 +67,5 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
-
-            <!-- Tomcat Maven Plugin for deployment -->
-            <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>2.2</version>
-                <configuration>
-                    <url>http://localhost:8080/manager/text</url>
-                    <server>tomcat-server</server>
-                    <path>/java-maven-webapp</path>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
-</project>
