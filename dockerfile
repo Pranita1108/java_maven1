@@ -1,5 +1,5 @@
 # Step 1: Use a specific version of tomcat as a base image
-FROM tomcat:9.0
+FROM Apache Tomcat/10.1.20
 
 # Expose Tomcat port to access the application 
 EXPOSE 8080
