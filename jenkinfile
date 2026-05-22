@@ -19,6 +19,10 @@ pipeline {
             }
         }
 
+environment {
+        TOMCAT_HOME = "/opt/tomcat"   // Path to your Tomcat installation
+    }
+
         stage('Test') {
             steps {
                 sh 'mvn test'
@@ -41,6 +45,15 @@ pipeline {
             steps {
                 echo 'Deploying application...'
                 // Example: sh 'scp target/*.jar user@server:/path/to/deploy'
+            }
+        }
+
+stage('Deploy to Tomcat') {
+            steps {
+                sh '''
+                    WAR_FILE=$(ls target/*.war | head -n 1)
+                    cp $WAR_FILE $TOMCAT_HOME/webapps/
+                '''
             }
         }
     }
