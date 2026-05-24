@@ -10,7 +10,7 @@
     <packaging>war</packaging>
 
     <dependencies>
-        <!-- Servlet API -->
+     
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -18,7 +18,7 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- JSP API -->
+       
         <dependency>
             <groupId>javax.servlet.jsp</groupId>
             <artifactId>javax.servlet.jsp-api</artifactId>
@@ -26,7 +26,7 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- JUnit for testing -->
+      
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -37,7 +37,7 @@
 
     <build>
         <plugins>
-            <!-- Compiler plugin -->
+          
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -48,7 +48,7 @@
                 </configuration>
             </plugin>
 
-            <!-- WAR plugin -->
+          
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
