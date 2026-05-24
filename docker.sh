@@ -4,7 +4,7 @@
 # Update system packages
 sudo yum update -y
 
-# Install Docker
+# Enable and install Docker
 sudo amazon-linux-extras enable docker
 sudo yum install -y docker
 
@@ -15,5 +15,21 @@ sudo systemctl enable docker
 # Add ec2-user (default) to docker group
 sudo usermod -aG docker ec2-user
 
-echo "✅ Docker installation complete on Amazon Linux 2."
-echo "ℹ️ Log out and back in, or run 'newgrp docker' to use Docker without sudo."
+# Add Docker’s official GPG key
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | \
+    sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+    echo \
+  "deb [arch=$(dpkg --print-architecture) \
+  signed-by=/etc/apt/keyrings/docker.gpg] \
+  https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+  # Install prerequisites
+sudo apt-get install -y \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
