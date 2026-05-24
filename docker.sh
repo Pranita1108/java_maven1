@@ -1,35 +1,23 @@
-#!/bin/bash
-# Docker installation script for Amazon Linux 2 EC2
+# update the package list
+ sudo apt upgrade -y
 
-# Update system packages
-sudo yum update -y
-
-# Enable and install Docker
+# install docker 
 sudo amazon-linux-extras enable docker
 sudo yum install -y docker
 
-# Start Docker service
-sudo systemctl start docker
-sudo systemctl enable docker
+# Add both users to the sudo group (so they can run admin commands)
+sudo usermod -aG sudo ubuntu
+sudo usermod -aG sudo jenkin
 
-# Add ec2-user (default) to docker group
-sudo usermod -aG docker ec2-user
+# apply new group setting immediately
+newgrp docker
 
-# Add Docker’s official GPG key
-sudo mkdir -p /etc/apt/keyrings
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | \
-    sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+# set correct permission for the docker socket to allow docker group member to access it
+sudo chmod 660 /var/run/docker.sock
+sudo chown root:docker /var/run/docker.sock
 
-    echo \
-  "deb [arch=$(dpkg --print-architecture) \
-  signed-by=/etc/apt/keyrings/docker.gpg] \
-  https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | \
-  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+# restart docker service to apply changes
+sudo systemct1 restart docker 
 
-  # Install prerequisites
-sudo apt-get install -y \
-    ca-certificates \
-    curl \
-    gnupg \
-    lsb-release
+#verify installation
+docker -version
