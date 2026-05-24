@@ -2,24 +2,15 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
                              http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
     <modelVersion>4.0.0</modelVersion>
-         
+
     <groupId>com.example</groupId>
-    <artifactId>maven-webapp</artifactId>
+    <artifactId>mywebapp</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>Maven Web Application</name>
-
-    <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
     <dependencies>
-        <!-- Servlet API (provided by Tomcat at runtime) -->
+        <!-- Servlet API -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -27,7 +18,7 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- JSP API (optional, if using JSPs) -->
+        <!-- JSP API -->
         <dependency>
             <groupId>javax.servlet.jsp</groupId>
             <artifactId>javax.servlet.jsp-api</artifactId>
@@ -45,7 +36,6 @@
     </dependencies>
 
     <build>
-        <finalName>maven-webapp</finalName>
         <plugins>
             <!-- Compiler plugin -->
             <plugin>
@@ -53,8 +43,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <source>${maven.compiler.source}</source>
-                    <target>${maven.compiler.target}</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
 
@@ -69,3 +59,4 @@
             </plugin>
         </plugins>
     </build>
+</project>
