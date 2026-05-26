@@ -1,17 +1,38 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Welcome Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            text-align: center;
+            padding-top: 50px;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #555;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #007acc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        a:hover {
+            background-color: #005f99;
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello from Tomcat + Maven!</h1>
-    <p>This is your JSP landing page.</p>
-
-    <%
-        // Example of embedding Java code in JSP
-        String user = "Guest";
-        out.println("<p>Welcome, " + user + "!</p>");
-    %>
-
-    <p>Current time: <%= new java.util.Date() %></p>
+    <h1>Welcome to My Web App</h1>
+    <p>This is the default landing page served by Tomcat.</p>
+    <a href="index.jsp">Go to JSP Page</a>
 </body>
 </html>
