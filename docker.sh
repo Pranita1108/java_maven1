@@ -1,15 +1,16 @@
+#!/bin/bash
+# Docker installation script for Amazon Linux 2 EC2
+
 # Update system packages
-sudo dnf update -y
+sudo yum update -y
 
-# Install Docker
-sudo dnf install -y docker
+# Enable and install Docker
+sudo amazon-linux-extras enable docker
+sudo yum install -y docker
 
-# Start and enable Docker service
+# Start Docker service
 sudo systemctl start docker
 sudo systemctl enable docker
 
-# Add ec2-user to docker group
+# Add ec2-user (default) to docker group
 sudo usermod -aG docker ec2-user
-
-# Verify installation
-docker --version
