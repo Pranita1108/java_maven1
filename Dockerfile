@@ -1,5 +1,3 @@
-FROM openjdk:21
+FROM openjdk:21.0.11
 EXPOSE 8080
-ADD target/Devops-project.jar Devops-project.jar 
-ENTRYPOINT [ "java","jar","Devops-project" ]
-
+ADD target/javamaven-webapp.war  /usr/local/tomcat/webapps/
